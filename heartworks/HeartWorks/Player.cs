@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace HeartWorks
 {
-    class Player : Sprite
+    public class Player : Sprite
     {
         #region Fields
         public Vector2 velocity;

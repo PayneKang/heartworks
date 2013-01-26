@@ -29,6 +29,8 @@ namespace HeartWorks
         Cog[] cogs;
         Camera2D cam;
         Viewport viewport;
+        Song song;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -56,6 +58,7 @@ namespace HeartWorks
             pipeT3 = new PipeT3[5];
             pipeT4 = new PipeT4[5];
             cogs = new Cog[12];
+            MediaPlayer.IsVisualizationEnabled = true;
 
             int i = 0;
             for (i = 0; i < pipeT1.Length; i++)
@@ -104,6 +107,10 @@ namespace HeartWorks
             bgBL.Position = new Vector2(0, 720);
             bgBR.Position = new Vector2(1024, 720);
             cam = new Camera2D(viewport);
+            song = Content.Load<Song>("heartbeat");
+
+            MediaPlayer.Play(song); 
+
             // TODO: use this.Content to load your game content here
         }
         protected override void UnloadContent()
@@ -123,6 +130,8 @@ namespace HeartWorks
                 this.Exit();
             player.Update(gameTime);
             cam.Update(player);
+
+            
             // TODO: Add your update logic here
 
             base.Update(gameTime);

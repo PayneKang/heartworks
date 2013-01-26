@@ -71,10 +71,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="heartbeat.wav">
+    <Compile Include="heartbeat.mp3">
       <Name>heartbeat</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
