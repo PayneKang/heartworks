@@ -56,28 +56,40 @@ namespace HeartWorks
 
 #if WINDOWS
             if (Keyboard.GetState().IsKeyDown(Keys.Left) || Keyboard.GetState().IsKeyDown(Keys.A))
+#elif XBOX
+            if ((GamePad.GetState().IsButtonDown(Buttons.LeftThumbstickLeft) || (GamePad.GetState().IsButtonDown(Buttons.DPadLeft))
+#endif
             {
                 //RotationAngle-=0.1f;
                 Position.X -= 5;
             }
+#if WINDOWS
             if (Keyboard.GetState().IsKeyDown(Keys.Right) || Keyboard.GetState().IsKeyDown(Keys.D))
+#elif XBOX
+            if ((GamePad.GetState().IsButtonDown(Buttons.LeftThumbstickRight) || (GamePad.GetState().IsButtonDown(Buttons.DPadRight))
+#endif
             {
                 //RotationAngle-=0.1f;
                 Position.X += 5;
             }
+#if WINDOWS
             if (Keyboard.GetState().IsKeyDown(Keys.Down) || Keyboard.GetState().IsKeyDown(Keys.S))
+#elif XBOX
+            if ((GamePad.GetState().IsButtonDown(Buttons.LeftThumbstickDown) || (GamePad.GetState().IsButtonDown(Buttons.DPadDown))
+#endif
             {
                 //RotationAngle-=0.1f;
                 Position.Y += 5;
             }
+#if WINDOWS
             if (Keyboard.GetState().IsKeyDown(Keys.Up) || Keyboard.GetState().IsKeyDown(Keys.W))
+#elif XBOX
+            if ((GamePad.GetState().IsButtonDown(Buttons.LeftThumbstickUp) || (GamePad.GetState().IsButtonDown(Buttons.DPadUp))
+#endif
             {
                 //RotationAngle-=0.1f;
                 Position.Y -= 5;
             }
-#elif XBOX
-            // xbox controls here
-#endif
 
         }
         public void Draw(SpriteBatch theSpriteBatch, Color color)
