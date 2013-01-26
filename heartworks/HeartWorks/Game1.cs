@@ -119,7 +119,8 @@ namespace HeartWorks
 
             MediaPlayer.Play(song);
 
-
+                MediaPlayer.IsRepeating = true;
+  
             // TODO: use this.Content to load your game content here
         }
         protected override void UnloadContent()
