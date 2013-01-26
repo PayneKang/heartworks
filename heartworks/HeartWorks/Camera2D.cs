@@ -83,7 +83,7 @@ namespace HeartWorks
          /// <summary>  
          /// Update the camera view  
          /// </summary>  
-        public void Update(Player tank)  
+     /*   public void Update(Player tank)  
          {  
              //Call Camera Input
             Input(tank);
@@ -97,13 +97,13 @@ namespace HeartWorks
                              Matrix.CreateTranslation(pos.X,pos.Y, 0);  
              //Update inverse matrix  
              inverseTransform = Matrix.Invert(transform);  
-         }
+         }*/
 
          /// <summary>  
          /// Example Input Method, rotates using cursor keys and zooms using mouse wheel  
          /// </summary> 
          private Vector2 inversedVel; 
-        protected virtual void Input(Player tank)  
+      /*  protected virtual void Input(Player tank)  
          {  
             
             keyState = Keyboard.GetState();  
@@ -135,7 +135,7 @@ namespace HeartWorks
                  if (pos.X > maxX - correctPos.X) pos.X = maxX - correctPos.X;
                  if (pos.Y > maxY - correctPos.Y) pos.Y = maxY - correctPos.Y;
              }
-         }  
+         } */ 
 
    
          #endregion  
