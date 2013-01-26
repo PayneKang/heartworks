@@ -27,7 +27,8 @@ namespace HeartWorks
         PipeT3[] pipeT3;
         PipeT4[] pipeT4;
         Cog[] cogs;
-
+        Camera2D cam;
+        Viewport viewport;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -91,8 +92,18 @@ namespace HeartWorks
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             sb = new ExtendedSpriteBatch(GraphicsDevice);
+            viewport = graphics.GraphicsDevice.Viewport;
            // plLives.LoadContent(Content, "");
             player.LoadContent(Content, "dot");
+            bgTL.LoadContent(Content, "bgTL");
+            bgTR.LoadContent(Content, "bgTR");
+            bgBL.LoadContent(Content, "bgBL");
+            bgBR.LoadContent(Content, "bgBR");
+            bgTL.Position = new Vector2(0, 0);
+            bgTR.Position = new Vector2(1024, 0);
+            bgBL.Position = new Vector2(0, 720);
+            bgBR.Position = new Vector2(1024, 720);
+            cam = new Camera2D(viewport);
             // TODO: use this.Content to load your game content here
         }
         protected override void UnloadContent()
@@ -111,6 +122,7 @@ namespace HeartWorks
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
             player.Update(gameTime);
+            cam.Update(player);
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -124,7 +136,11 @@ namespace HeartWorks
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            sb.Begin();
+            sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, cam.Transform);
+            bgTL.Draw(sb, Color.White);
+            bgTR.Draw(sb, Color.White);
+            bgBL.Draw(sb, Color.White);
+            bgBR.Draw(sb, Color.White);
             player.Draw(sb, Color.White);
             sb.End();
 

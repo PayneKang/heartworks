@@ -69,10 +69,7 @@ namespace HeartWorks
             image_loaded = true;
             size.X = image.Width;
             size.Y = image.Height;
-            tankFire = Content.Load<SoundEffect>("tankfire");
-            tankFireInst = tankFire.CreateInstance();
-            explosionSound = Content.Load<SoundEffect>("explosion");
-            explInst = explosionSound.CreateInstance();
+          
             return true;
         }
 
