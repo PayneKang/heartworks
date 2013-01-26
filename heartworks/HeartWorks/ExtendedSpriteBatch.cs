@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace TankCity
+namespace HeartWorks
 {
     public class ExtendedSpriteBatch : SpriteBatch
     {
