@@ -54,6 +54,7 @@ namespace HeartWorks
         public void Update(GameTime gameTime)
         {
 
+#if WINDOWS
             if (Keyboard.GetState().IsKeyDown(Keys.Left) || Keyboard.GetState().IsKeyDown(Keys.A))
             {
                 //RotationAngle-=0.1f;
@@ -74,6 +75,9 @@ namespace HeartWorks
                 //RotationAngle-=0.1f;
                 Position.Y -= 5;
             }
+#elif XBOX
+            // xbox controls here
+#endif
 
         }
         public void Draw(SpriteBatch theSpriteBatch, Color color)
