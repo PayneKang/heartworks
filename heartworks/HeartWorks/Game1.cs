@@ -31,6 +31,9 @@ namespace HeartWorks
         Viewport viewport;
         Song song;
 
+        VisualizationData viz;
+        Texture2D viztext;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -45,6 +48,7 @@ namespace HeartWorks
         /// </summary>
         protected override void Initialize()
         {
+            
             // TODO: Add your initialization logic here
             player=new Player();
             plLives = new PlayerLives();
@@ -58,7 +62,9 @@ namespace HeartWorks
             pipeT3 = new PipeT3[5];
             pipeT4 = new PipeT4[5];
             cogs = new Cog[12];
+            viz = new VisualizationData();
             MediaPlayer.IsVisualizationEnabled = true;
+            MediaPlayer.IsRepeating = true;
 
             int i = 0;
             for (i = 0; i < pipeT1.Length; i++)
@@ -93,8 +99,9 @@ namespace HeartWorks
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            
             sb = new ExtendedSpriteBatch(GraphicsDevice);
+            spriteBatch = new SpriteBatch(GraphicsDevice);
             viewport = graphics.GraphicsDevice.Viewport;
            // plLives.LoadContent(Content, "");
             player.LoadContent(Content, "dot");
@@ -108,8 +115,10 @@ namespace HeartWorks
             bgBR.Position = new Vector2(1024, 720);
             cam = new Camera2D(viewport);
             song = Content.Load<Song>("heartbeat");
+            viztext = Content.Load<Texture2D>("viz");
 
-            MediaPlayer.Play(song); 
+            MediaPlayer.Play(song);
+
 
             // TODO: use this.Content to load your game content here
         }
@@ -131,7 +140,7 @@ namespace HeartWorks
             player.Update(gameTime);
             cam.Update(player);
 
-            
+            MediaPlayer.GetVisualizationData(viz);
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -151,9 +160,52 @@ namespace HeartWorks
             bgBL.Draw(sb, Color.White);
             bgBR.Draw(sb, Color.White);
             player.Draw(sb, Color.White);
+
+
+
             sb.End();
+            spriteBatch.Begin();
+            if (song != null)
+            {
+                doVisualization();
+            }
+            spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        void doVisualization()
+        {
+            int x, y, height;
+
+            //draw freq bars
+           /* for (int f = 0; f < viz.Frequencies.Count; f++)
+            {
+                x = 20 + 180 * (f*2) / viz.Frequencies.Count;
+                y = 350 + (int)(100 - viz.Frequencies[f] * 100);
+                height = (int)(viz.Frequencies[f] * 100);
+                spriteBatch.Draw(viztext, new Rectangle(x, y, 1, height), Color.Orange);
+            }*/
+
+            //draw sample bars
+            for (int s = 0; s < viz.Samples.Count; s++)
+            {
+                x = 400 + 180 * (s*2) / viz.Samples.Count;
+                if (viz.Samples[s] > 0.0f)
+                {
+                    y = 300 + (int)(80 - viz.Samples[s] * 100);
+                    height = (int)(viz.Samples[s] * 300);
+                    spriteBatch.Draw(viztext, new Rectangle(x, y, 1, height), Color.White);
+                }
+               /* else
+                {
+                    y = 120;
+                    height = (int)(-1.0f * viz.Samples[s] * 40);
+                }*/
+                
+            }
+
+
         }
     }
 }
