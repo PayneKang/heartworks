@@ -59,6 +59,21 @@ namespace HeartWorks
                 //RotationAngle-=0.1f;
                 Position.X -= 5;
             }
+            if (Keyboard.GetState().IsKeyDown(Keys.Right) || Keyboard.GetState().IsKeyDown(Keys.D))
+            {
+                //RotationAngle-=0.1f;
+                Position.X += 5;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.Down) || Keyboard.GetState().IsKeyDown(Keys.S))
+            {
+                //RotationAngle-=0.1f;
+                Position.Y += 5;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.Up) || Keyboard.GetState().IsKeyDown(Keys.W))
+            {
+                //RotationAngle-=0.1f;
+                Position.Y -= 5;
+            }
 
         }
         public void Draw(SpriteBatch theSpriteBatch, Color color)
