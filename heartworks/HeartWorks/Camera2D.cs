@@ -23,10 +23,10 @@ namespace HeartWorks
          protected Int32 scroll;
          protected const float moveAmount =4f;
          protected Vector2 correctPos = new Vector2(4480, 2520);
-         protected const int minX = 90;
-         protected const int minY = 90;
-         protected const int maxX = 5000;
-         protected const int maxY = 2790;
+         protected const int minX = 0;
+         protected const int minY = 0;
+         protected const int maxX = 2024;
+         protected const int maxY = 1480;
         #endregion  
    
          #region Properties  
@@ -83,10 +83,10 @@ namespace HeartWorks
          /// <summary>  
          /// Update the camera view  
          /// </summary>  
-     /*   public void Update(Player tank)  
+        public void Update(Player pl)  
          {  
              //Call Camera Input
-            Input(tank);
+            Input(pl);
              //_pos = tank.Position;  
              //Clamp zoom value  
              zoom = MathHelper.Clamp(zoom, 0.0f, 10.0f);  
@@ -97,13 +97,13 @@ namespace HeartWorks
                              Matrix.CreateTranslation(pos.X,pos.Y, 0);  
              //Update inverse matrix  
              inverseTransform = Matrix.Invert(transform);  
-         }*/
+         }
 
          /// <summary>  
          /// Example Input Method, rotates using cursor keys and zooms using mouse wheel  
          /// </summary> 
-         private Vector2 inversedVel; 
-      /*  protected virtual void Input(Player tank)  
+          
+       protected virtual void Input(Player pl)  
          {  
             
             keyState = Keyboard.GetState();  
@@ -111,31 +111,25 @@ namespace HeartWorks
              
               if (keyState.IsKeyDown(Keys.Up))  
               {
-                  inversedVel = new Vector2(
-                    (float)(Math.Cos(tank.RotationAngle + Math.PI) * 3),
-                    (float)(Math.Sin(tank.RotationAngle + Math.PI) * 3));
-                  if (pos.X >= minX - correctPos.X && pos.X <= maxX - correctPos.X &&
-                          pos.Y >= minY - correctPos.Y && pos.Y <= maxY - correctPos.Y)
-                 pos+= inversedVel;
-                  if (pos.X < minX - correctPos.X) pos.X = minX - correctPos.X;
-                  if (pos.Y < minY - correctPos.Y) pos.Y = minY - correctPos.Y;
-                  if (pos.X > maxX - correctPos.X) pos.X = maxX - correctPos.X;
-                  if (pos.Y > maxY - correctPos.Y) pos.Y = maxY - correctPos.Y;
+                 
+                 pos.Y+= 5;
+                  
               }  
              if (keyState.IsKeyDown(Keys.Down))
              {
-                 inversedVel = new Vector2(
-                     (float) (Math.Cos(tank.RotationAngle + Math.PI)*3),
-                     (float) (Math.Sin(tank.RotationAngle + Math.PI)*3));
-                 if (pos.X >= minX - correctPos.X && pos.X <= maxX - correctPos.X &&
-                     pos.Y >= minY - correctPos.Y && pos.Y <= maxY - correctPos.Y)
-                     pos -= inversedVel;
-                 if (pos.X < minX - correctPos.X) pos.X = minX - correctPos.X;
-                 if (pos.Y < minY - correctPos.Y) pos.Y = minY - correctPos.Y;
-                 if (pos.X > maxX - correctPos.X) pos.X = maxX - correctPos.X;
-                 if (pos.Y > maxY - correctPos.Y) pos.Y = maxY - correctPos.Y;
+                 pos.Y -= 5;
              }
-         } */ 
+             if (keyState.IsKeyDown(Keys.Left))
+             {
+
+                 pos.X += 5;
+
+             }
+             if (keyState.IsKeyDown(Keys.Right))
+             {
+                 pos.X -= 5;
+             }
+         } 
 
    
          #endregion  
