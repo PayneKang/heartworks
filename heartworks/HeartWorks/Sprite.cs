@@ -25,6 +25,14 @@ namespace HeartWorks
         public bool alive;
         public Rectangle box;
         public SoundEffect tankFire;
+        public SoundEffect powerUp;
+        public SoundEffect powerDown;
+        public SoundEffect cogMove;
+        public SoundEffect pipeMove;
+        public SoundEffectInstance powerUpInst;
+        public SoundEffectInstance powerDownInst;
+        public SoundEffectInstance cogMoveInst;
+        public SoundEffectInstance pipeMoveInst;
         public SoundEffectInstance tankFireInst;
         public SoundEffect explosionSound;
         public SoundEffectInstance explInst;
