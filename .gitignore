@@ -1,2 +1,7 @@
 *.cache
+*.cachefile
 *.suo
+
+HeartWorks/HeartWorks/bin/*
+HeartWorks/HeartWorks/obj/*
+HeartWorks/HeartWorksContent/obj/*

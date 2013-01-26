@@ -18,7 +18,8 @@ namespace HeartWorks
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
+        ExtendedSpriteBatch sb;
+        Player player;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -34,7 +35,7 @@ namespace HeartWorks
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            player=new Player();
             base.Initialize();
         }
 
@@ -46,14 +47,10 @@ namespace HeartWorks
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            sb = new ExtendedSpriteBatch(GraphicsDevice);
+            player.LoadContent(Content, "dot");
             // TODO: use this.Content to load your game content here
         }
-
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// all content.
-        /// </summary>
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
@@ -69,7 +66,7 @@ namespace HeartWorks
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
-
+            player.Update(gameTime);
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -83,7 +80,9 @@ namespace HeartWorks
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            sb.Begin();
+            player.Draw(sb, Color.White);
+            sb.End();
 
             base.Draw(gameTime);
         }
