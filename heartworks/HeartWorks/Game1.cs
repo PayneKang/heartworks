@@ -30,6 +30,11 @@ namespace HeartWorks
         Camera2D cam;
         Viewport viewport;
         Song song;
+        int maxAdvEnem = 5;
+        int maxBasEnem = 5;
+        AdvancedEnemy[] advEnemy;
+        BasicEnemy[] basEnemy;
+        private Random randGen;
 
         public Game1()
         {
@@ -47,7 +52,7 @@ namespace HeartWorks
         {
             // TODO: Add your initialization logic here
             player=new Player();
-            plLives = new PlayerLives();
+            plLives = new PlayerLives(1,1);
             minimap = new Sprite();
             bgTL = new Sprite();
             bgTR = new Sprite();
@@ -59,6 +64,9 @@ namespace HeartWorks
             pipeT4 = new PipeT4[5];
             cogs = new Cog[12];
             MediaPlayer.IsVisualizationEnabled = true;
+            advEnemy = new AdvancedEnemy[maxAdvEnem];
+            basEnemy = new BasicEnemy[maxBasEnem];
+            randGen = new Random();
 
             int i = 0;
             for (i = 0; i < pipeT1.Length; i++)
@@ -83,6 +91,16 @@ namespace HeartWorks
                 cogs[i] = new Cog();
             }
 
+            for (i = 0; i < maxAdvEnem; i++)
+            {
+                advEnemy[i] = new AdvancedEnemy(randGen.Next(0, 1948), randGen.Next(0, 1340));
+            }
+ 
+            for (i = 0; i < maxBasEnem; i++)
+            {
+                basEnemy[i] = new BasicEnemy(randGen.Next(0, 1948), randGen.Next(0, 1340));
+            }
+
             base.Initialize();
         }
 
@@ -98,6 +116,17 @@ namespace HeartWorks
             viewport = graphics.GraphicsDevice.Viewport;
            // plLives.LoadContent(Content, "");
             player.LoadContent(Content, "dot");
+            basEnemy[0].LoadContent(Content, "dot");
+            basEnemy[1].LoadContent(Content, "dot");
+            basEnemy[2].LoadContent(Content, "dot");
+            basEnemy[3].LoadContent(Content, "dot");
+            basEnemy[4].LoadContent(Content, "dot");
+            advEnemy[0].LoadContent(Content, "dot");
+            advEnemy[1].LoadContent(Content, "dot");
+            advEnemy[2].LoadContent(Content, "dot");
+            advEnemy[3].LoadContent(Content, "dot");
+            advEnemy[4].LoadContent(Content, "dot");
+
             bgTL.LoadContent(Content, "bgTL");
             bgTR.LoadContent(Content, "bgTR");
             bgBL.LoadContent(Content, "bgBL");
@@ -153,6 +182,17 @@ namespace HeartWorks
             bgBL.Draw(sb, Color.White);
             bgBR.Draw(sb, Color.White);
             player.Draw(sb, Color.White);
+            basEnemy[0].Draw(sb, Color.White);
+            basEnemy[1].Draw(sb, Color.White);
+            basEnemy[2].Draw(sb, Color.White);
+            basEnemy[3].Draw(sb, Color.White);
+            basEnemy[4].Draw(sb, Color.White);
+            advEnemy[0].Draw(sb, Color.White);
+            advEnemy[1].Draw(sb, Color.White);
+            advEnemy[2].Draw(sb, Color.White);
+            advEnemy[3].Draw(sb, Color.White);
+            advEnemy[4].Draw(sb, Color.White);
+
             sb.End();
 
             base.Draw(gameTime);
