@@ -109,8 +109,10 @@ namespace HeartWorks
             cam = new Camera2D(viewport);
             song = Content.Load<Song>("heartbeat");
 
-            MediaPlayer.Play(song); 
+                MediaPlayer.Play(song);
 
+                MediaPlayer.IsRepeating = true;
+  
             // TODO: use this.Content to load your game content here
         }
         protected override void UnloadContent()
