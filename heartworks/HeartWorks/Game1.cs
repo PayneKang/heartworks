@@ -20,6 +20,14 @@ namespace HeartWorks
         SpriteBatch spriteBatch;
         ExtendedSpriteBatch sb;
         Player player;
+        PlayerLives plLives;
+        Sprite minimap, bgTL, bgTR, bgBL, bgBR;
+        PipeT1[] pipeT1;
+        PipeT2[] pipeT2;
+        PipeT3[] pipeT3;
+        PipeT4[] pipeT4;
+        Cog[] cogs;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -36,6 +44,41 @@ namespace HeartWorks
         {
             // TODO: Add your initialization logic here
             player=new Player();
+            plLives = new PlayerLives();
+            minimap = new Sprite();
+            bgTL = new Sprite();
+            bgTR = new Sprite();
+            bgBL = new Sprite();
+            bgBR = new Sprite();
+            pipeT1 = new PipeT1[5];
+            pipeT2 = new PipeT2[5];
+            pipeT3 = new PipeT3[5];
+            pipeT4 = new PipeT4[5];
+            cogs = new Cog[12];
+
+            int i = 0;
+            for (i = 0; i < pipeT1.Length; i++)
+            {
+                pipeT1[i] = new PipeT1();
+            }
+            for (i = 0; i < pipeT2.Length; i++)
+            {
+                pipeT2[i] = new PipeT2();
+            }
+            for (i = 0; i < pipeT3.Length; i++)
+            {
+                pipeT3[i] = new PipeT3();
+            }
+            for (i = 0; i < pipeT4.Length; i++)
+            {
+                pipeT4[i] = new PipeT4();
+            }
+
+            for (i = 0; i < cogs.Length; i++)
+            {
+                cogs[i] = new Cog();
+            }
+
             base.Initialize();
         }
 
@@ -48,6 +91,7 @@ namespace HeartWorks
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             sb = new ExtendedSpriteBatch(GraphicsDevice);
+           // plLives.LoadContent(Content, "");
             player.LoadContent(Content, "dot");
             // TODO: use this.Content to load your game content here
         }
